@@ -1,5 +1,7 @@
 #include "minimax.h"
-#include <iostream>
+#include "alphabeta.h"
+#include "evalfunc.h"
+#include "optmove.h"
 
 int main()
 {
@@ -19,4 +21,43 @@ int main()
 	cout << "The optimal value if maximizing is starting first is: " << alphabetaMax << endl;
 	int alphabetaMin = alphabeta(0, 0, false, scoresAB, MAX, MIN, hAB);
 	cout << "The optimal value if minimizing is starting first is: " << alphabetaMin << endl;
+	
+	cout << "----------------------------------------------------------" << endl;
+	
+	//tic tac toe
+	char board[3][3] =
+	{
+		{'x', 'o', 'x'},
+		{'o', 'o', 'x'},
+		{'-', '-', '-'}
+	};
+
+	int value = evaluate(board);
+	if (value == 1)
+		cout << "The winner is X" << endl;
+	else if (value == -1)
+		cout << "The winner is O" << endl;
+	else
+		cout << "Draw" << endl;
+
+	cout << "----------------------------------------------------------" << endl;
+
+	Move bestMove = findBestMove(board);
+	
+	cout << "The optimal move is: " << endl;
+	cout << "ROW: " << bestMove.row << " COL: " << bestMove.col << endl;
+
+	board[bestMove.row][bestMove.col] = 'x';
+
+	for (int i = 0; i < 3; i++) //going every cell
+	{
+		cout << "|";
+		for (int j = 0; j < 3; j++)
+		{
+			cout << board[i][j] << "|";
+		}
+		cout << endl;
+	}
+
+	return 0;
 }

@@ -10,7 +10,7 @@ int alphabeta(int depth, int position, bool maximizingPlayer, int scores[], int 
 		return scores[position];
 	}
 
-	if (maximizingPlayer) 
+	if (maximizingPlayer)
 	{
 		int best = MIN;
 
