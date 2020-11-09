@@ -19,7 +19,7 @@ int alphabeta(int depth, int position, bool maximizingPlayer, int scores[], int 
 			int value = alphabeta(depth + 1, position * 2 + i, false, scores, alpha, beta, h);
 			best = max(best, value);
 			alpha = max(alpha, best);
-			if (alpha <= beta) //cut off
+			if (beta <= alpha) //cut off
 				break;
 		}
 
@@ -34,7 +34,7 @@ int alphabeta(int depth, int position, bool maximizingPlayer, int scores[], int 
 			int value = alphabeta(depth + 1, position * 2 + i, true, scores, alpha, beta, h);
 			best = min(best, value);
 			beta = min(beta, best);
-			if (alpha <= beta) //cut off
+			if (beta <= alpha) //cut off
 				break;
 		}
 
