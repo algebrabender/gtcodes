@@ -4,14 +4,14 @@
 
 using namespace std;
 
-//code for function that fins the next optimal move for a player in tic tac toe game
+//code for function that finds the next optimal move for a player in tic tac toe game
 
 struct Move
 {
 	int row, col;
 };
 
-char player = 'x', opponent = 'y';
+char player = 'O', opponent = 'X';
 
 bool anyMoveLeft(char board[3][3]) //function that checks if there is any moves left
 {
@@ -22,17 +22,17 @@ bool anyMoveLeft(char board[3][3]) //function that checks if there is any moves 
 	return false; //if function havent returned in any iteration there is no moves left
 }
 
-int minimax(char board[3][3], int depth, bool maximazingPlayer) //minimax funtion where maximazingPlayer is X
+int minimax(char board[3][3], int depth, bool maximazingPlayer) //minimax funtion where maximazingPlayer is O
 {
 	int score = evaluate(board);
 
-	if (score == 1 or score == -1) //if game is finished and maximaxingPlayer/X has won or O has won 
+	if (score == 1 || score == -1) //if game is finished and maximaxingPlayer/O has won or X has won 
 		return score;
 	
 	if (!anyMoveLeft(board)) //if there was a draw (maybe can be done with just score)
 		return 0;
 
-	if (maximazingPlayer) //if it is X's turn
+	if (maximazingPlayer) //if it is O's turn
 	{
 		int best = -10000;
 
@@ -51,7 +51,7 @@ int minimax(char board[3][3], int depth, bool maximazingPlayer) //minimax funtio
 		return best;
 	}
 
-	else //if it is O's turn
+	else //if it is X's turn
 	{
 		int best = 10000;
 
@@ -86,9 +86,9 @@ Move findBestMove(char board[3][3]) //function that finds the best possible move
 			{
 				board[i][j] = player; //making the move
 				int moveVal = minimax(board, 0, false); //evaluates this move
-				board[i][j] = '-';
+				board[i][j] = '-'; //undoing themove
 				
-				if (moveVal > bestVal) //if making the move would give better result we upadte that to be best move
+				if (moveVal > bestVal) //if making the move would give better result we update that to be best move
 				{
 					bestMove.col = j;
 					bestMove.row = i;
@@ -98,7 +98,7 @@ Move findBestMove(char board[3][3]) //function that finds the best possible move
 		}
 	}
 
-	cout << "The value of the best Move is: " << bestVal << endl;
+	//cout << "The value of the best Move is: " << bestVal << endl;
 	
 	return bestMove;
 }

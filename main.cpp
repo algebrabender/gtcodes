@@ -2,19 +2,20 @@
 #include "alphabeta.h"
 #include "evalfunc.h"
 #include "optmove.h"
+#include "TicTacToeAI.h"
 
 int main()
 {
-	int scores[] = { 3, 5, 2, 9, 12, 5, 23, 23 };
+	/*int scores[] = { -49, 17, -90, -21, 18, -32, -8, 7, 3, -92, 61, 87, 13, 40, -15, 36, 19, 33, 66, 40, 84, 56, -75, -7, 61  };
 	int n = sizeof(scores) / sizeof(scores[0]);
 	int h = log2(n);
 	int max = minimax(0, 0, true, scores, h);
 	cout << "The optimal value if maximizing is starting first is: " << max << endl;
 	int min = minimax(0, 0, false, scores, h);
 	cout << "The optimal value if minimazing is starting first is: " << min << endl;
-	const int MAX = +10000;
+		const int MAX = +10000;
 	const int MIN = -10000;
-	int scoresAB[] = { 3, 5, 6, 9, 1, 2, 0, -1 };
+	int scoresAB[] = { -49, 17, -90, -21, 18, -32, -8, 7, 3, -92, 61, 87, 13, 40, -15, 36, 19, 33, 66, 40, 84, 56, -75, -7, 61 };
 	int nAB = sizeof(scoresAB) / sizeof(scoresAB[0]);
 	int hAB = log2(nAB);
 	int alphabetaMax = alphabeta(0, 0, true, scoresAB, MIN, MAX, hAB);
@@ -57,7 +58,43 @@ int main()
 			cout << board[i][j] << "|";
 		}
 		cout << endl;
+	}*/
+
+	char board[SIDE][SIDE];
+	initialize(board);
+	int currentPlayer = 1;
+	int cell;
+	int res = -1;
+	while (res != 3)
+	{
+		cout << "Current state of board" << endl;
+		showBoard(board);
+		if (currentPlayer == 1)
+		{
+			showInstruction();
+			cin >> cell;
+			cout << endl;
+			humanMove(cell, board);
+			currentPlayer = 2;
+		}
+		else
+		{
+			cout << "Computers turn" << endl;
+			performMove(board);
+			currentPlayer = 1;
+		}
+		res = gameOver(board);
 	}
+	showBoard(board);
+	if (res == 1)
+	{
+		if (currentPlayer == 2)
+			cout << "Winner is X" << endl;
+		else
+			cout << "Winner is O" << endl;
+	}
+	else
+		cout << "It's a draw" << endl;
 
 	return 0;
 }
