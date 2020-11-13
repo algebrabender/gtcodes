@@ -12,3 +12,4 @@ optmove will most likely be redone as i don't like the way it deals with some ca
 ai for tic tac toe is not the perfect one but it works good
 not all cases are yet tested
 it will be updated to give option for human multiplayer, as well as ai multiplayer
+there have been some small tweaks for a few files
