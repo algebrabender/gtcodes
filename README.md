@@ -15,4 +15,4 @@ it will be updated to give option for human multiplayer, as well as ai multiplay
 there have been some small tweaks for a few files
 
 //note 15.11
-everything expect tic tac toe code is sorted into .h/.cpp files
+everything except tic tac toe code is sorted into .h/.cpp files
